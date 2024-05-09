@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Library</title>
+
+    <style>
+        .body{
+            height: 100%;
+            width: 100%;
+            background-color: yellow;
+        }
+        .image{
+            height:350px;
+            width:350px;
+            object-fit:cover;
+        }
+    </style>
+</head>
+<body class="body">
+
+    {% for book in books %}
+        <ul>
+            <li>{{ book.name }}</li>
+            <li>{{ book.author }}</li>
+            <li>{{ book.pub_date }}</li>
+            <li>{{ book.price }}</li>
+            <li>{{ book.description }}</li>
+        </ul>
+    {% endfor %}
+
+    
+    {% if request.user.is_authenticated %}
+        <a href={% url 'users:logout' %} >Logout</a>
+    {% endif %}
+    <div class="image">
+        <img src="{% static 'images/1.jpeg' %}" alt="image" />
+    </div>
+    
+</body>
+</html>
